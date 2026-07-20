@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/gengo-openapi.yml
+docs: https://developers.gengo.com/v2/authentication/
+model: >-
+  Custom API-key signature. Every restricted call is signed: take the current Unix
+  epoch as `ts`, compute the HMAC-SHA1 of `ts` keyed by the account private_key, and
+  send that as `api_sig` alongside the public `api_key`. The public/private key pair
+  functions as username/password and is generated on the account API settings page.
+  A few Service endpoints (language_pairs, languages, unit_count) require only api_key.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+  signature: hmac-sha1
+  signed_params: [api_key, api_sig, ts]
+schemes:
+- name: ApiKey
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: Public API key identifying the account. Every authenticated call must also include
+    `ts` (Unix epoch) and `api_sig` (HMAC-SHA1 of `ts` keyed by the account private key). Keys
+    are created on the account API settings page.
+  sources:
+  - openapi/gengo-openapi.yml
