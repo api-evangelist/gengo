@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: Gengo Account Service API
+  version: '2.0'
+  description: The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.
+  contact:
+    name: Gengo Support
+    url: https://developers.gengo.com
+    email: support@gengo.com
+  termsOfService: https://gengo.com/terms-of-service/
+  x-apis-json:
+    generated: '2026-07-19'
+    method: generated
+    source: https://developers.gengo.com/v2/api_methods/
+    note: Faithfully generated from the published Gengo API v2 reference (endpoints, HTTP methods, summaries, parameters and response envelope documented at developers.gengo.com). Gengo does not publish an OpenAPI/Swagger file.
+servers:
+- url: https://api.gengo.com/v2
+  description: Production
+- url: http://api.sandbox.gengo.com/v2
+  description: Sandbox (test environment; free test credits, faux-translator triggers)
+security:
+- ApiKey: []
+tags:
+- name: Service
+  description: Language pairs, supported languages, quotes and unit counts.
+paths:
+  /translate/service/language_pairs:
+    get:
+      tags:
+      - Service
+      operationId: getServiceLanguagePairs
+      summary: Returns supported translation language pairs, tiers, and credit prices.
+      security: []
+      parameters:
+      - name: lc_src
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Source language code; filters to relevant language pairs.
+      responses:
+        '200':
+          description: Language pairs envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /translate/service/languages:
+    get:
+      tags:
+      - Service
+      operationId: getServiceLanguages
+      summary: Returns a list of supported languages and their language codes.
+      security: []
+      responses:
+        '200':
+          description: Languages envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /translate/service/quote:
+    post:
+      tags:
+      - Service
+      operationId: postServiceQuote
+      summary: Returns credit quote and unit count for text based on content, tier, and language pair.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: JSON-encoded jobs map to quote.
+      responses:
+        '200':
+          description: Quote envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /translate/service/quote/file:
+    post:
+      tags:
+      - Service
+      operationId: postServiceQuoteFile
+      summary: Returns credit quote and unit count for uploaded file content.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: JSON-encoded jobs map referencing uploaded files.
+                file_key:
+                  type: string
+                  format: binary
+                  description: Uploaded file(s) keyed to the jobs payload.
+      responses:
+        '200':
+          description: File quote envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /translate/service/unit_count:
+    get:
+      tags:
+      - Service
+      operationId: getServiceUnitCount
+      summary: Returns unit type and unit count for text based on content and language code submitted.
+      security: []
+      responses:
+        '200':
+          description: Unit count envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  responses:
+    Error:
+      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        opstat:
+          type: string
+          example: error
+        err:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 1100
+            msg:
+              type: string
+              example: api_sig is a required field
+      required:
+      - opstat
+      - err
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Public API key identifying the account. Every authenticated call must also include `ts` (Unix epoch) and `api_sig` (HMAC-SHA1 of `ts` keyed by the account private key). Keys are created on the account API settings page.

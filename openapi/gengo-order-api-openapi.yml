@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Gengo Account Order API
+  version: '2.0'
+  description: The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.
+  contact:
+    name: Gengo Support
+    url: https://developers.gengo.com
+    email: support@gengo.com
+  termsOfService: https://gengo.com/terms-of-service/
+  x-apis-json:
+    generated: '2026-07-19'
+    method: generated
+    source: https://developers.gengo.com/v2/api_methods/
+    note: Faithfully generated from the published Gengo API v2 reference (endpoints, HTTP methods, summaries, parameters and response envelope documented at developers.gengo.com). Gengo does not publish an OpenAPI/Swagger file.
+servers:
+- url: https://api.gengo.com/v2
+  description: Production
+- url: http://api.sandbox.gengo.com/v2
+  description: Sandbox (test environment; free test credits, faux-translator triggers)
+security:
+- ApiKey: []
+tags:
+- name: Order
+  description: Operations on an order (a group of jobs submitted together).
+paths:
+  /translate/order/{order_id}:
+    get:
+      tags:
+      - Order
+      operationId: getOrder
+      summary: Retrieves a group of jobs that were previously submitted together by their order id.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Order id.
+      responses:
+        '200':
+          description: Order envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+    delete:
+      tags:
+      - Order
+      operationId: cancelOrder
+      summary: Cancels all available jobs in an order.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Order id.
+      responses:
+        '200':
+          description: Cancellation result envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /translate/order/{order_id}/comments:
+    get:
+      tags:
+      - Order
+      operationId: getOrderComments
+      summary: Retrieves the comment thread for an order.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Order id.
+      responses:
+        '200':
+          description: Comment thread envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /translate/order/{order_id}/comment:
+    post:
+      tags:
+      - Order
+      operationId: postOrderComment
+      summary: Submits a new comment to the order's comment thread.
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Order id.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: JSON-encoded comment body.
+      responses:
+        '200':
+          description: Comment result envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  responses:
+    Error:
+      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        opstat:
+          type: string
+          example: error
+        err:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 1100
+            msg:
+              type: string
+              example: api_sig is a required field
+      required:
+      - opstat
+      - err
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Public API key identifying the account. Every authenticated call must also include `ts` (Unix epoch) and `api_sig` (HMAC-SHA1 of `ts` keyed by the account private key). Keys are created on the account API settings page.

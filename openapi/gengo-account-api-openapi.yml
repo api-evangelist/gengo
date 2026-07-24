@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Gengo Account API
+  version: '2.0'
+  description: The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.
+  contact:
+    name: Gengo Support
+    url: https://developers.gengo.com
+    email: support@gengo.com
+  termsOfService: https://gengo.com/terms-of-service/
+  x-apis-json:
+    generated: '2026-07-19'
+    method: generated
+    source: https://developers.gengo.com/v2/api_methods/
+    note: Faithfully generated from the published Gengo API v2 reference (endpoints, HTTP methods, summaries, parameters and response envelope documented at developers.gengo.com). Gengo does not publish an OpenAPI/Swagger file.
+servers:
+- url: https://api.gengo.com/v2
+  description: Production
+- url: http://api.sandbox.gengo.com/v2
+  description: Sandbox (test environment; free test credits, faux-translator triggers)
+security:
+- ApiKey: []
+tags:
+- name: Account
+  description: Account information, stats, balance and preferred translators.
+paths:
+  /account/stats:
+    get:
+      tags:
+      - Account
+      operationId: getAccountStats
+      summary: Retrieves account stats, such as orders made.
+      responses:
+        '200':
+          description: Account statistics envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /account/me:
+    get:
+      tags:
+      - Account
+      operationId: getAccountMe
+      summary: Retrieves account information, such as email.
+      responses:
+        '200':
+          description: Account information envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /account/balance:
+    get:
+      tags:
+      - Account
+      operationId: getAccountBalance
+      summary: Retrieves account balance in credits.
+      responses:
+        '200':
+          description: Account balance envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /account/preferred_translators:
+    get:
+      tags:
+      - Account
+      operationId: getPreferredTranslators
+      summary: Retrieves preferred translators set by user.
+      responses:
+        '200':
+          description: Preferred translators envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  responses:
+    Error:
+      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        opstat:
+          type: string
+          example: error
+        err:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 1100
+            msg:
+              type: string
+              example: api_sig is a required field
+      required:
+      - opstat
+      - err
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Public API key identifying the account. Every authenticated call must also include `ts` (Unix epoch) and `api_sig` (HMAC-SHA1 of `ts` keyed by the account private key). Keys are created on the account API settings page.
