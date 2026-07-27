@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.gengo.com/
+authentication:
+  style: api-key-signature
+  detail: Public api_key + HMAC-SHA1 api_sig over a Unix ts. See authentication/gengo-authentication.yml.
+idempotency:
+  supported: false
+  note: >-
+    Gengo does not expose an idempotency-key header. It does apply a duplicate-submission guard:
+    error 1754 is returned when an identical payload is detected within a 5-minute window. This is a
+    dedup safeguard, not a client-supplied idempotency contract, so no Idempotency-Key retry semantics
+    are available.
+pagination:
+  style: filter-based
+  detail: >-
+    GET /translate/jobs accepts `count` (max results), `timestamp_after` (epoch), and `status` filters
+    rather than cursor/offset pagination. Bulk retrieval by id list uses GET /translate/jobs/{ids}
+    with a comma-separated id list.
+request_format:
+  content_type: application/x-www-form-urlencoded
+  data_argument: >-
+    Write operations flatten their JSON body into a single `data` form parameter
+    (json.dumps with compact separators), alongside api_key, ts and api_sig.
+  max_request_size: 100MB
+response_envelope:
+  shape: '{ "opstat": "ok|error", "response": {...} | "err": { "code": int, "msg": str } }'
+  success_field: response
+  error_field: err
+  cross_ref: errors/gengo-error-codes.yml
+callbacks:
+  supported: true
+  detail: >-
+    Per-job `callback_url` receives POSTed JSON job payloads on status changes. Retries every 15 minutes
+    for 12 hours until a 200 is returned. Payloads over 60KB are not sent. See asyncapi/gengo-callbacks-webhooks.yml.
+metadata:
+  custom_data: Up to 1KB of string custom_data can be attached per job (error 1751/1758 on violation).
+request_tracing:
+  request_id_header: null
+  note: No request-id / trace header documented.
+versioning:
+  cross_ref: lifecycle/gengo-lifecycle.yml
+rate_limit_signal:
+  documented: false
+  note: No published rate-limit headers or quotas; 2800 (API temporarily unavailable) signals throttling/outage.

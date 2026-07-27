@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.gengo.com/v2/api_methods/error_codes/
+envelope:
+  shape: '{ "opstat": "error", "err": { "code": <int>, "msg": "<string>" } }'
+  code_field: err.code
+  message_field: err.msg
+  note: >-
+    On success responses carry opstat=ok and a `response` object. On failure opstat=error
+    and `err` carries a numeric code plus a sample message. Use the numeric code to map your
+    own localized message; msg values are only sample text.
+error_codes:
+  - { code: 1000, message: Authentication failed }
+  - { code: 1100, message: api_sig is a required field }
+  - { code: 1150, message: api_key is a required field }
+  - { code: 1200, message: ts - timestamp is a required field }
+  - { code: 1201, message: ts - timestamp must be numeric }
+  - { code: 1250, message: data is a required field }
+  - { code: 1251, message: JSON data cannot be decoded }
+  - { code: 1300, message: type is a required field }
+  - { code: 1301, message: job_type is not supported }
+  - { code: 1302, message: identifier missing }
+  - { code: 1303, message: quote missing }
+  - { code: 1304, message: invalid tier }
+  - { code: 1305, message: quote number of files exceeds limit }
+  - { code: 1306, message: quote file size exceeds limit }
+  - { code: 1350, message: body_src is a required field }
+  - { code: 1351, message: Invalid body text }
+  - { code: 1352, message: content type invalid }
+  - { code: 1400, message: lc_src is a required field }
+  - { code: 1450, message: lc_tgt is a required field }
+  - { code: 1500, message: tier is a required field }
+  - { code: 1501, message: filename is a required field }
+  - { code: 1551, message: language service is not supported }
+  - { code: 1601, message: callback_url must be a valid URL }
+  - { code: 1651, message: auto_approve must be 0 or 1 }
+  - { code: 1701, message: use_preferred must be 0 or 1 }
+  - { code: 1751, message: '"custom_data" is over maximum storage limit (1kb)' }
+  - { code: 1754, message: system detected an identical payload within a 5 minute window }
+  - { code: 1758, message: '"custom_data" must be of type string' }
+  - { code: 1800, message: jobs is a required field }
+  - { code: 1801, message: jobs files mismatch }
+  - { code: 1802, message: 'file upload failed (did you check that the file is correct and the extension supported?)' }
+  - { code: 1803, message: missing file key }
+  - { code: 1804, message: jobs identifier missing }
+  - { code: 1851, message: as_group must be 0 or 1 }
+  - { code: 1901, message: process must be 0 or 1 }
+  - { code: 1950, message: These jobs cannot be grouped (they have different tiers, source or target languages) }
+  - { code: 1951, message: You cannot group a single job }
+  - { code: 2000, message: body is a required field }
+  - { code: 2010, message: invalid attachment }
+  - { code: 2050, message: job_id is a required field }
+  - { code: 2100, message: Unauthorized job access }
+  - { code: 2150, message: revision_id is a required field }
+  - { code: 2200, message: Unauthorized revision access }
+  - { code: 2250, message: Job is not reviewable }
+  - { code: 2251, message: Job cannot be purchased (incorrect state) }
+  - { code: 2252, message: Job cannot be canceled (incorrect state) }
+  - { code: 2300, message: comment is a required field }
+  - { code: 2350, message: reason is a required field }
+  - { code: 2450, message: Invalid follow-up value }
+  - { code: 2500, message: rating is a required field }
+  - { code: 2501, message: '"rating" must be a numeric value between 1 and 5' }
+  - { code: 2502, message: '"rating" must be between 1 and 5' }
+  - { code: 2503, message: public flag must be a boolean }
+  - { code: 2550, message: "Jobs' group id is missing" }
+  - { code: 2600, message: Unauthorized job group access }
+  - { code: 2650, message: Invalid job status }
+  - { code: 2700, message: Not enough credits - please top up }
+  - { code: 2750, message: Unauthorized order access }
+  - { code: 2751, message: Order canceled before processing (please wait until the order is out of our queue) }
+  - { code: 2752, message: '"tone" is over the maximum allowed size (128 characters)' }
+  - { code: 2753, message: '"purpose" is over the maximum allowed size (128 characters)' }
+  - { code: 2800, message: API temporarily unavailable }

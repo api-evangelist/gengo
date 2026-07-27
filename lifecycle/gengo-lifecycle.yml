@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.gengo.com/v2/job_statuses/
+versioning:
+  scheme: uri-path
+  current: v2
+  base_url: https://api.gengo.com/v2
+  docs: https://developers.gengo.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+job_status_lifecycle:
+  description: >-
+    Each submitted job moves through a defined status machine. The completed translation
+    is available in the reviewable and approved statuses. If no PUT is made within 120 hours
+    of reviewable, the job auto-approves.
+  states:
+    - { status: queued, meaning: Being processed by Gengo; not yet visible to translators. }
+    - { status: available, meaning: On the system and waiting for a translator to begin. }
+    - { status: pending, meaning: A translator is working on the content. }
+    - { status: reviewable, meaning: Translation finished; awaiting customer review (unless auto_approve=1). }
+    - { status: approved, meaning: Approved by the customer; translator paid. }
+    - { status: revising, meaning: Customer requested changes. }
+    - { status: rejected, meaning: Customer rejected; support follows up. }
+    - { status: canceled, meaning: Canceled before the translator started. }
+    - { status: hold, meaning: Temporarily held by Gengo support for review. }
+  auto_approve_window_hours: 120
+deprecated_operations: []

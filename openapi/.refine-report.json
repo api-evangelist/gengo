@@ -1,0 +1,24 @@
+{
+  "provider": "gengo",
+  "sources": [
+    "gengo-account-api-openapi.yml",
+    "gengo-glossary-api-openapi.yml",
+    "gengo-job-api-openapi.yml",
+    "gengo-jobs-api-openapi.yml",
+    "gengo-order-api-openapi.yml",
+    "gengo-service-api-openapi.yml"
+  ],
+  "outputs": [
+    "gengo-account-api-openapi.yml",
+    "gengo-glossary-api-openapi.yml",
+    "gengo-job-api-openapi.yml",
+    "gengo-jobs-api-openapi.yml",
+    "gengo-order-api-openapi.yml",
+    "gengo-service-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

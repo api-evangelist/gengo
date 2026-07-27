@@ -1,0 +1,416 @@
+openapi: 3.0.3
+info:
+  title: Gengo API
+  version: '2.0'
+  description: >-
+    The Gengo API (v2) lets you programmatically order human translation. Submit
+    text or file jobs, group them into orders, retrieve translated content, manage
+    comments and revisions, run quotes, look up supported language pairs, and
+    manage glossaries. Jobs move through a defined status lifecycle
+    (queued -> available -> pending -> reviewable -> approved) and can notify your
+    system via callback URLs. Authentication uses a public api_key plus an
+    HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your
+    private key.
+  contact:
+    name: Gengo Support
+    url: https://developers.gengo.com
+    email: support@gengo.com
+  termsOfService: https://gengo.com/terms-of-service/
+  x-apis-json:
+    generated: '2026-07-19'
+    method: generated
+    source: https://developers.gengo.com/v2/api_methods/
+    note: >-
+      Faithfully generated from the published Gengo API v2 reference (endpoints,
+      HTTP methods, summaries, parameters and response envelope documented at
+      developers.gengo.com). Gengo does not publish an OpenAPI/Swagger file.
+servers:
+  - url: https://api.gengo.com/v2
+    description: Production
+  - url: http://api.sandbox.gengo.com/v2
+    description: Sandbox (test environment; free test credits, faux-translator triggers)
+tags:
+  - name: Account
+    description: Account information, stats, balance and preferred translators.
+  - name: Job
+    description: Operations on a single translation job.
+  - name: Jobs
+    description: Submit and manage groups of translation jobs.
+  - name: Order
+    description: Operations on an order (a group of jobs submitted together).
+  - name: Glossary
+    description: Manage translation glossaries.
+  - name: Service
+    description: Language pairs, supported languages, quotes and unit counts.
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: >-
+        Public API key identifying the account. Every authenticated call must
+        also include `ts` (Unix epoch) and `api_sig` (HMAC-SHA1 of `ts` keyed by
+        the account private key). Keys are created on the account API settings page.
+  parameters:
+    apiKey:
+      name: api_key
+      in: query
+      required: true
+      schema: { type: string }
+      description: Your public API key.
+    apiSig:
+      name: api_sig
+      in: query
+      required: true
+      schema: { type: string }
+      description: HMAC-SHA1 signature of `ts` using your private key.
+    ts:
+      name: ts
+      in: query
+      required: true
+      schema: { type: integer }
+      description: Current Unix epoch time as an integer.
+  schemas:
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum: [ok, error]
+        response:
+          type: object
+      required: [opstat]
+    Error:
+      type: object
+      properties:
+        opstat:
+          type: string
+          example: error
+        err:
+          type: object
+          properties:
+            code: { type: integer, example: 1100 }
+            msg: { type: string, example: api_sig is a required field }
+      required: [opstat, err]
+    JobStatus:
+      type: string
+      enum: [queued, available, pending, reviewable, approved, revising, rejected, canceled, hold]
+      description: The lifecycle status of a translation job.
+  responses:
+    Error:
+      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+security:
+  - ApiKey: []
+paths:
+  /account/stats:
+    get:
+      tags: [Account]
+      operationId: getAccountStats
+      summary: Retrieves account stats, such as orders made.
+      responses:
+        '200': { description: Account statistics envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /account/me:
+    get:
+      tags: [Account]
+      operationId: getAccountMe
+      summary: Retrieves account information, such as email.
+      responses:
+        '200': { description: Account information envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /account/balance:
+    get:
+      tags: [Account]
+      operationId: getAccountBalance
+      summary: Retrieves account balance in credits.
+      responses:
+        '200': { description: Account balance envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /account/preferred_translators:
+    get:
+      tags: [Account]
+      operationId: getPreferredTranslators
+      summary: Retrieves preferred translators set by user.
+      responses:
+        '200': { description: Preferred translators envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/jobs:
+    post:
+      tags: [Jobs]
+      operationId: postJobs
+      summary: Submits a job or group of jobs to translate. Request should be no larger than 100MB.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: JSON-encoded jobs payload (a `jobs` map plus optional `as_group`, `process`).
+      responses:
+        '200': { description: Submitted order/jobs envelope (order_id + job ids), content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+    get:
+      tags: [Jobs]
+      operationId: getJobs
+      summary: Retrieves a list of resources for the most recent jobs filtered by the given parameters.
+      parameters:
+        - { name: status, in: query, required: false, schema: { $ref: '#/components/schemas/JobStatus' }, description: Filter by job status. }
+        - { name: timestamp_after, in: query, required: false, schema: { type: integer }, description: Epoch time; only jobs created after this time. }
+        - { name: count, in: query, required: false, schema: { type: integer }, description: Maximum number of jobs to return. }
+      responses:
+        '200': { description: List of recent job resources, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+    put:
+      tags: [Jobs]
+      operationId: updateJobs
+      summary: Updates a group of jobs to translate. Request should be no larger than 100MB.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data: { type: string, description: JSON-encoded action + job_ids. }
+      responses:
+        '200': { description: Update result envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/jobs/{ids}:
+    get:
+      tags: [Jobs]
+      operationId: getJobsByIds
+      summary: Retrieves a list of jobs requested by a comma-separated list of job ids.
+      parameters:
+        - { name: ids, in: path, required: true, schema: { type: string }, description: Comma-separated list of job ids. }
+      responses:
+        '200': { description: Jobs envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/job/{id}:
+    get:
+      tags: [Job]
+      operationId: getJob
+      summary: Retrieves a specific job.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      responses:
+        '200': { description: Job envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+    put:
+      tags: [Job]
+      operationId: updateJob
+      summary: Updates a job (approve, reject, revise, or purchase a reviewable job).
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data: { type: string, description: 'JSON-encoded action (e.g. {"action":"approve"|"reject"|"revise"|"purchase"}).' }
+      responses:
+        '200': { description: Update result envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+    delete:
+      tags: [Job]
+      operationId: cancelJob
+      summary: Cancels the job. You can only cancel a job if it has not been started by a translator.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      responses:
+        '200': { description: Cancellation result envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/job/{id}/revisions:
+    get:
+      tags: [Job]
+      operationId: getJobRevisions
+      summary: Gets list of revision resources for a job.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      responses:
+        '200': { description: Revisions envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/job/{id}/revision/{rev_id}:
+    get:
+      tags: [Job]
+      operationId: getJobRevision
+      summary: Gets a specific revision for a job.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+        - { name: rev_id, in: path, required: true, schema: { type: integer }, description: Revision id. }
+      responses:
+        '200': { description: Revision envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/job/{id}/feedback:
+    get:
+      tags: [Job]
+      operationId: getJobFeedback
+      summary: Retrieves the feedback you have submitted for a particular job.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      responses:
+        '200': { description: Feedback envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/job/{id}/comments:
+    get:
+      tags: [Job]
+      operationId: getJobComments
+      summary: Retrieves the comment thread for a job.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      responses:
+        '200': { description: Comment thread envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/job/{id}/comment:
+    post:
+      tags: [Job]
+      operationId: postJobComment
+      summary: Submits a new comment to the job's comment thread.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: Job id. }
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data: { type: string, description: 'JSON-encoded comment body, e.g. {"body":"Please use British spelling"}.' }
+      responses:
+        '200': { description: Comment result envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/order/{order_id}:
+    get:
+      tags: [Order]
+      operationId: getOrder
+      summary: Retrieves a group of jobs that were previously submitted together by their order id.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: integer }, description: Order id. }
+      responses:
+        '200': { description: Order envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+    delete:
+      tags: [Order]
+      operationId: cancelOrder
+      summary: Cancels all available jobs in an order.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: integer }, description: Order id. }
+      responses:
+        '200': { description: Cancellation result envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/order/{order_id}/comments:
+    get:
+      tags: [Order]
+      operationId: getOrderComments
+      summary: Retrieves the comment thread for an order.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: integer }, description: Order id. }
+      responses:
+        '200': { description: Comment thread envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/order/{order_id}/comment:
+    post:
+      tags: [Order]
+      operationId: postOrderComment
+      summary: Submits a new comment to the order's comment thread.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: integer }, description: Order id. }
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data: { type: string, description: 'JSON-encoded comment body.' }
+      responses:
+        '200': { description: Comment result envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/glossary:
+    get:
+      tags: [Glossary]
+      operationId: getGlossaries
+      summary: Retrieves a list of glossaries that belongs to the authenticated user.
+      responses:
+        '200': { description: Glossaries envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/glossary/{glossary_id}:
+    get:
+      tags: [Glossary]
+      operationId: getGlossary
+      summary: Retrieves a glossary by ID.
+      parameters:
+        - { name: glossary_id, in: path, required: true, schema: { type: integer }, description: Glossary id. }
+      responses:
+        '200': { description: Glossary envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/service/language_pairs:
+    get:
+      tags: [Service]
+      operationId: getServiceLanguagePairs
+      summary: Returns supported translation language pairs, tiers, and credit prices.
+      security: []
+      parameters:
+        - { name: lc_src, in: query, required: false, schema: { type: string }, description: Source language code; filters to relevant language pairs. }
+      responses:
+        '200': { description: Language pairs envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/service/languages:
+    get:
+      tags: [Service]
+      operationId: getServiceLanguages
+      summary: Returns a list of supported languages and their language codes.
+      security: []
+      responses:
+        '200': { description: Languages envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/service/quote:
+    post:
+      tags: [Service]
+      operationId: postServiceQuote
+      summary: Returns credit quote and unit count for text based on content, tier, and language pair.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                data: { type: string, description: JSON-encoded jobs map to quote. }
+      responses:
+        '200': { description: Quote envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/service/quote/file:
+    post:
+      tags: [Service]
+      operationId: postServiceQuoteFile
+      summary: Returns credit quote and unit count for uploaded file content.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                data: { type: string, description: JSON-encoded jobs map referencing uploaded files. }
+                file_key: { type: string, format: binary, description: Uploaded file(s) keyed to the jobs payload. }
+      responses:
+        '200': { description: File quote envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }
+  /translate/service/unit_count:
+    get:
+      tags: [Service]
+      operationId: getServiceUnitCount
+      summary: Returns unit type and unit count for text based on content and language code submitted.
+      security: []
+      responses:
+        '200': { description: Unit count envelope, content: { application/json: { schema: { $ref: '#/components/schemas/Envelope' } } } }
+        default: { $ref: '#/components/responses/Error' }

@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.gengo.com/v2/sandbox/
+environment:
+  name: Gengo Sandbox
+  base_url: http://api.sandbox.gengo.com/v2/
+  console_url: https://sandbox.gengo.com/
+  separation: Separate sandbox account with its own sandbox-only API key pair (public + private).
+capabilities:
+  - Add free credits to your sandbox account for testing.
+  - Trigger the "completion" of translation jobs (act as a faux translator) to test your response handling.
+  - Manually toggle job states (e.g. pending -> reviewable) without triggering callbacks.
+  - Test callbacks by clicking the "Send Callback" button in the sandbox dashboard.
+test_values:
+  note: >-
+    Gengo does not publish fixed magic test identifiers (no test card / magic-number range). Test data is
+    created interactively in the sandbox dashboard and driven by the faux-translator triggers.
+caveats:
+  - The sandbox jobs database may be wiped clean to prepare for new features; do not rely on it for storage.
+  - Live keys are generated separately at gengo.com after creating a full user account.

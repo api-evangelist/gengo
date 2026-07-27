@@ -1,0 +1,32 @@
+# Gengo
+
+> Gengo provides fast, affordable, high-quality human translation in all major languages via 1000s of certified translators worldwide, exposed through the Gengo API (v2). Submit text or file translation jobs, group them into orders, retrieve completed translations, run quotes, look up language pairs, manage glossaries, and receive job status updates via callback URLs. Authentication is a public api_key plus an HMAC-SHA1 signature (api_sig) over a Unix timestamp.
+
+## API
+- [Gengo API v2 documentation](https://developers.gengo.com/): Full endpoint reference for account, jobs, orders, glossaries and service methods.
+- [Authentication](https://developers.gengo.com/v2/authentication/): Public/private key pair with HMAC-SHA1 request signing.
+- [Sandbox testing](https://developers.gengo.com/v2/sandbox/): Test environment at http://api.sandbox.gengo.com/v2/ with faux-translator triggers.
+- [Error codes](https://developers.gengo.com/v2/api_methods/error_codes/): Numeric error code registry.
+- [Callback URLs (webhooks)](https://developers.gengo.com/v2/callback_urls/): Per-job status notifications.
+- [Job statuses](https://developers.gengo.com/v2/job_statuses/): Job lifecycle state machine.
+
+## Specs
+- [OpenAPI (API Evangelist, generated)](https://raw.githubusercontent.com/api-evangelist/gengo/refs/heads/main/openapi/gengo-openapi.yml): 27 operations across Account, Job, Jobs, Order, Glossary and Service.
+
+## Client libraries
+- [Python (official)](https://github.com/gengo/gengo-python) — pip install gengo
+- [Ruby (official)](https://github.com/gengo/gengo-ruby) — gem install gengo
+- [PHP (official)](https://github.com/gengo/gengo-php) — composer require gengo/gengo
+- [Java (official)](https://github.com/gengo/gengo-java)
+
+## Artifacts
+- [Error code registry](https://raw.githubusercontent.com/api-evangelist/gengo/refs/heads/main/errors/gengo-error-codes.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/gengo/refs/heads/main/conventions/gengo-conventions.yml)
+- [Webhooks catalog](https://raw.githubusercontent.com/api-evangelist/gengo/refs/heads/main/asyncapi/gengo-callbacks-webhooks.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/gengo/refs/heads/main/data-model/gengo-data-model.yml)
+
+## Docs
+- [Developers overview](https://gengo.com/developers/)
+- [Pricing and languages](https://gengo.com/pricing-languages/)
+- [Support](https://support.gengo.com/hc/en-us)
+- [Terms of service](https://gengo.com/terms-of-service/)

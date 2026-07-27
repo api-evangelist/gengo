@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/gengo-openapi.yml
+skills:
+  - file: gengo-order-translation.md
+    name: Order human translation with Gengo
+    api: openapi/gengo-openapi.yml
+    operations: [getServiceLanguagePairs, postServiceQuote, postJobs, getOrder, getJob, updateJob]
+  - file: gengo-manage-jobs.md
+    name: Monitor and manage Gengo translation jobs
+    api: openapi/gengo-openapi.yml
+    operations: [getJobs, getJobsByIds, getJob, getJobRevisions, getJobRevision, postJobComment, getJobComments, getJobFeedback, updateJob]

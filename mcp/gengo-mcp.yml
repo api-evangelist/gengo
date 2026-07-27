@@ -1,0 +1,92 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/gengo-openapi.yml
+note: >-
+  No official Gengo MCP server was found. This is a candidate tool list derived one-to-one
+  from the documented Gengo API v2 operations, for building an MCP server.
+server:
+  name: gengo
+  transport: http
+tools:
+  - name: getAccountStats
+    description: Retrieves account stats, such as orders made.
+    source_operation: openapi/gengo-openapi.yml#getAccountStats
+  - name: getAccountMe
+    description: Retrieves account information, such as email.
+    source_operation: openapi/gengo-openapi.yml#getAccountMe
+  - name: getAccountBalance
+    description: Retrieves account balance in credits.
+    source_operation: openapi/gengo-openapi.yml#getAccountBalance
+  - name: getPreferredTranslators
+    description: Retrieves preferred translators set by user.
+    source_operation: openapi/gengo-openapi.yml#getPreferredTranslators
+  - name: postJobs
+    description: Submits a job or group of jobs to translate. Request should be no larger than 100MB.
+    source_operation: openapi/gengo-openapi.yml#postJobs
+  - name: getJobs
+    description: Retrieves a list of resources for the most recent jobs filtered by the given parameters.
+    source_operation: openapi/gengo-openapi.yml#getJobs
+  - name: updateJobs
+    description: Updates a group of jobs to translate. Request should be no larger than 100MB.
+    source_operation: openapi/gengo-openapi.yml#updateJobs
+  - name: getJobsByIds
+    description: Retrieves a list of jobs requested by a comma-separated list of job ids.
+    source_operation: openapi/gengo-openapi.yml#getJobsByIds
+  - name: getJob
+    description: Retrieves a specific job.
+    source_operation: openapi/gengo-openapi.yml#getJob
+  - name: updateJob
+    description: Updates a job (approve, reject, revise, or purchase a reviewable job).
+    source_operation: openapi/gengo-openapi.yml#updateJob
+  - name: cancelJob
+    description: Cancels the job. You can only cancel a job if it has not been started by a translator.
+    source_operation: openapi/gengo-openapi.yml#cancelJob
+  - name: getJobRevisions
+    description: Gets list of revision resources for a job.
+    source_operation: openapi/gengo-openapi.yml#getJobRevisions
+  - name: getJobRevision
+    description: Gets a specific revision for a job.
+    source_operation: openapi/gengo-openapi.yml#getJobRevision
+  - name: getJobFeedback
+    description: Retrieves the feedback you have submitted for a particular job.
+    source_operation: openapi/gengo-openapi.yml#getJobFeedback
+  - name: getJobComments
+    description: Retrieves the comment thread for a job.
+    source_operation: openapi/gengo-openapi.yml#getJobComments
+  - name: postJobComment
+    description: Submits a new comment to the job''s comment thread.
+    source_operation: openapi/gengo-openapi.yml#postJobComment
+  - name: getOrder
+    description: Retrieves a group of jobs that were previously submitted together by their order id.
+    source_operation: openapi/gengo-openapi.yml#getOrder
+  - name: cancelOrder
+    description: Cancels all available jobs in an order.
+    source_operation: openapi/gengo-openapi.yml#cancelOrder
+  - name: getOrderComments
+    description: Retrieves the comment thread for an order.
+    source_operation: openapi/gengo-openapi.yml#getOrderComments
+  - name: postOrderComment
+    description: Submits a new comment to the order''s comment thread.
+    source_operation: openapi/gengo-openapi.yml#postOrderComment
+  - name: getGlossaries
+    description: Retrieves a list of glossaries that belongs to the authenticated user.
+    source_operation: openapi/gengo-openapi.yml#getGlossaries
+  - name: getGlossary
+    description: Retrieves a glossary by ID.
+    source_operation: openapi/gengo-openapi.yml#getGlossary
+  - name: getServiceLanguagePairs
+    description: Returns supported translation language pairs, tiers, and credit prices.
+    source_operation: openapi/gengo-openapi.yml#getServiceLanguagePairs
+  - name: getServiceLanguages
+    description: Returns a list of supported languages and their language codes.
+    source_operation: openapi/gengo-openapi.yml#getServiceLanguages
+  - name: postServiceQuote
+    description: Returns credit quote and unit count for text based on content, tier, and language pair.
+    source_operation: openapi/gengo-openapi.yml#postServiceQuote
+  - name: postServiceQuoteFile
+    description: Returns credit quote and unit count for uploaded file content.
+    source_operation: openapi/gengo-openapi.yml#postServiceQuoteFile
+  - name: getServiceUnitCount
+    description: Returns unit type and unit count for text based on content and language code submitted.
+    source_operation: openapi/gengo-openapi.yml#getServiceUnitCount

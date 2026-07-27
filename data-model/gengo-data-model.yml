@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gengo-openapi.yml + https://developers.gengo.com/v2/api_methods/
+note: >-
+  Entity graph derived from the Gengo API v2 object model. An Order groups Jobs submitted together;
+  each Job carries language pair (lc_src/lc_tgt), tier, status, comments, revisions and feedback.
+entities:
+  - name: Account
+    id_field: none
+    domain: account
+    description: The authenticated Gengo user; carries balance (credits), stats and preferred translators.
+    operations: [getAccountMe, getAccountStats, getAccountBalance, getPreferredTranslators]
+  - name: Order
+    id_field: order_id
+    domain: translate
+    description: A group of jobs submitted together in one request. Worked per language pair by one translator.
+    operations: [getOrder, cancelOrder, getOrderComments, postOrderComment]
+  - name: Job
+    id_field: job_id
+    domain: translate
+    description: A single translation unit with source/target languages, tier, status lifecycle and content.
+    fields: [lc_src, lc_tgt, tier, status, body_src, body_tgt, callback_url, auto_approve, custom_data]
+    operations: [postJobs, getJob, updateJob, cancelJob, getJobs, getJobsByIds, updateJobs]
+  - name: Revision
+    id_field: rev_id
+    domain: translate
+    description: A saved version of a job's translation, created each time a translator revises.
+    operations: [getJobRevisions, getJobRevision]
+  - name: Comment
+    id_field: none
+    domain: translate
+    description: A message on a job or order comment thread.
+    operations: [getJobComments, postJobComment, getOrderComments, postOrderComment]
+  - name: Feedback
+    id_field: none
+    domain: translate
+    description: Customer rating/feedback submitted for a completed job.
+    operations: [getJobFeedback]
+  - name: Glossary
+    id_field: glossary_id
+    domain: translate
+    description: A terminology glossary owned by the account, applied to translations.
+    operations: [getGlossaries, getGlossary]
+  - name: LanguagePair
+    id_field: none
+    domain: service
+    description: A supported source/target language combination with tier and credit unit_price.
+    operations: [getServiceLanguagePairs, getServiceLanguages]
+relationships:
+  - { from: Order, type: has_many, to: Job, via: order_id }
+  - { from: Job, type: belongs_to, to: Order, via: order_id }
+  - { from: Job, type: has_many, to: Revision, via: job_id }
+  - { from: Job, type: has_many, to: Comment, via: job_id }
+  - { from: Job, type: has_one, to: Feedback, via: job_id }
+  - { from: Order, type: has_many, to: Comment, via: order_id }
+  - { from: Job, type: references, to: LanguagePair, via: [lc_src, lc_tgt, tier] }
+  - { from: Job, type: references, to: Glossary, via: glossary_id }

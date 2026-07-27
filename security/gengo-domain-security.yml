@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: gengo.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 16 23:59:59 2026 GMT
+  hsts: false
+- host: api.gengo.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 16 23:59:59 2026 GMT
+  hsts: false
+- host: api.sandbox.gengo.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb  3 23:59:59 2027 GMT
+  hsts: false
+domains:
+- domain: gengo.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

@@ -1,9 +1,29 @@
 aid: gengo
 name: Gengo
-description: Gengo is a company surfaced as a portfolio company of 500-global, point-nine and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Gengo is a people-powered translation platform that delivers fast, affordable, high-quality
+  human translation in every major language through a global network of thousands of certified
+  translators. The Gengo API (v2) lets developers order translation programmatically: submit text
+  or file jobs, group them into orders, run cost quotes, look up supported language pairs and tiers,
+  manage glossaries, retrieve completed translations and revisions, exchange comments with
+  translators, and receive job-status updates through per-job callback URLs. Authentication uses a
+  public API key plus an HMAC-SHA1 request signature, with a full sandbox for testing. Gengo was
+  surfaced as a portfolio company of 500 Global and Point Nine and enriched into the API Evangelist
+  network.
 url: https://raw.githubusercontent.com/api-evangelist/gengo/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://gengo.com/wp-content/themes/gengo_theme/images/common/apple-touch-icon-precomposed.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -13,15 +33,175 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Translation
+- Localization
+- Human Translation
+- Language Services
+- Internationalization
+- Content
+- Text
+apis:
+- aid: gengo:gengo-account-api
+  name: Gengo Account API
+  description: Account information, stats, balance and preferred translators.
+  humanURL: https://developers.gengo.com/
+  baseURL: https://api.gengo.com/v2
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/gengo-account-api-openapi.yml
+  - type: Documentation
+    url: https://developers.gengo.com/
+  - type: APIReference
+    url: https://developers.gengo.com/v2/api_methods/
+  - type: GettingStarted
+    url: https://developers.gengo.com/v2/first_steps/
+- aid: gengo:gengo-glossary-api
+  name: Gengo Glossary API
+  description: Manage translation glossaries.
+  humanURL: https://developers.gengo.com/
+  baseURL: https://api.gengo.com/v2
+  tags:
+  - Glossary
+  properties:
+  - type: OpenAPI
+    url: openapi/gengo-glossary-api-openapi.yml
+  - type: Documentation
+    url: https://developers.gengo.com/
+  - type: APIReference
+    url: https://developers.gengo.com/v2/api_methods/
+  - type: GettingStarted
+    url: https://developers.gengo.com/v2/first_steps/
+- aid: gengo:gengo-job-api
+  name: Gengo Job API
+  description: Operations on a single translation job.
+  humanURL: https://developers.gengo.com/
+  baseURL: https://api.gengo.com/v2
+  tags:
+  - Job
+  properties:
+  - type: OpenAPI
+    url: openapi/gengo-job-api-openapi.yml
+  - type: Documentation
+    url: https://developers.gengo.com/
+  - type: APIReference
+    url: https://developers.gengo.com/v2/api_methods/
+  - type: GettingStarted
+    url: https://developers.gengo.com/v2/first_steps/
+- aid: gengo:gengo-jobs-api
+  name: Gengo Jobs API
+  description: Submit and manage groups of translation jobs.
+  humanURL: https://developers.gengo.com/
+  baseURL: https://api.gengo.com/v2
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/gengo-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.gengo.com/
+  - type: APIReference
+    url: https://developers.gengo.com/v2/api_methods/
+  - type: GettingStarted
+    url: https://developers.gengo.com/v2/first_steps/
+- aid: gengo:gengo-order-api
+  name: Gengo Order API
+  description: Operations on an order (a group of jobs submitted together).
+  humanURL: https://developers.gengo.com/
+  baseURL: https://api.gengo.com/v2
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/gengo-order-api-openapi.yml
+  - type: Documentation
+    url: https://developers.gengo.com/
+  - type: APIReference
+    url: https://developers.gengo.com/v2/api_methods/
+  - type: GettingStarted
+    url: https://developers.gengo.com/v2/first_steps/
+- aid: gengo:gengo-service-api
+  name: Gengo Service API
+  description: Language pairs, supported languages, quotes and unit counts.
+  humanURL: https://developers.gengo.com/
+  baseURL: https://api.gengo.com/v2
+  tags:
+  - Service
+  properties:
+  - type: OpenAPI
+    url: openapi/gengo-service-api-openapi.yml
+  - type: Documentation
+    url: https://developers.gengo.com/
+  - type: APIReference
+    url: https://developers.gengo.com/v2/api_methods/
+  - type: GettingStarted
+    url: https://developers.gengo.com/v2/first_steps/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://gengo.com/developers/
+- type: Documentation
+  url: https://developers.gengo.com/
+- type: APIReference
+  url: https://developers.gengo.com/v2/api_methods/
+- type: GettingStarted
+  url: https://developers.gengo.com/v2/first_steps/
+- type: Support
+  url: https://support.gengo.com/hc/en-us
+- type: Blog
+  url: https://gengo.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/gengo
+- type: Pricing
+  url: https://gengo.com/pricing-languages/
+- type: SignUp
+  url: https://gengo.com/auth/form/signup/
+- type: TermsOfService
+  url: https://gengo.com/terms-of-service/
+- type: OpenAPI
+  url: openapi/gengo-openapi.yml
+- type: Authentication
+  url: authentication/gengo-authentication.yml
+- type: Packages
+  url: packages/gengo-packages.yml
+- type: SDKs
+  url: packages/gengo-packages.yml
+- type: MCPServer
+  url: mcp/gengo-mcp.yml
+- type: LLMsTxt
+  url: llms/gengo-llms.txt
+- type: Overlay
+  url: overlays/gengo-overlay.yaml
+- type: Conformance
+  url: conformance/gengo-conformance.yml
+- type: ErrorCatalog
+  url: errors/gengo-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/gengo-lifecycle.yml
+- type: Conventions
+  url: conventions/gengo-conventions.yml
+- type: DataModel
+  url: data-model/gengo-data-model.yml
+- type: Sandbox
+  url: sandbox/gengo-sandbox.yml
+- type: Webhooks
+  url: asyncapi/gengo-callbacks-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/gengo-domain-security.yml
 - type: Website
   url: https://gengo.com
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

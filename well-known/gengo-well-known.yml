@@ -1,0 +1,15 @@
+generated: '2026-07-19'
+method: none
+source: live probes 2026-07-19
+note: >-
+  No usable /.well-known discovery surface. gengo.com returns 404 for well-known paths, and
+  api.gengo.com returns a generic API error JSON ({"opstat":"error","err":{"code":1100,...}}) with
+  HTTP 200 for ANY path (soft-404), so its /.well-known "200" responses are not real documents.
+  Recorded for auditability; no WellKnown/SecurityTxt pointer wired.
+documents:
+  - { path: /.well-known/security.txt, host: https://gengo.com, status: 404 }
+  - { path: /.well-known/security.txt, host: https://api.gengo.com, status: 200, real: false, reason: soft-404 generic API error JSON }
+  - { path: /.well-known/openid-configuration, host: https://gengo.com, status: 404 }
+  - { path: /.well-known/oauth-authorization-server, host: https://api.gengo.com, status: 200, real: false, reason: soft-404 generic API error JSON }
+  - { path: /.well-known/api-catalog, host: https://gengo.com, status: 404 }
+  - { path: /.well-known/ai-plugin.json, host: https://gengo.com, status: 404 }

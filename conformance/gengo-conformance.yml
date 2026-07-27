@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gengo-openapi.yml
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: Auth is a custom api_key + HMAC-SHA1 signature scheme, not OAuth2.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom {opstat, err:{code,msg}} envelope, not application/problem+json.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset/Deprecation header support documented.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: No /.well-known/security.txt (host returns a generic API error JSON for all paths).
+  - id: webhooks
+    conforms: true
+    evidence: Documented per-job callback_url POST notifications with retry semantics.
+  - id: json
+    conforms: true
+    evidence: All responses are JSON with a consistent opstat envelope.

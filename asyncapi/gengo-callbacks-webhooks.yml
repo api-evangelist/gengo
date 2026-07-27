@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.gengo.com/v2/callback_urls/
+spec_type: Webhooks
+note: >-
+  Gengo does not publish an AsyncAPI document. It documents a webhook (callback) surface: when
+  submitting a job you set a per-job `callback_url`, and Gengo POSTs JSON updates as the job changes
+  state. This artifact captures that catalog (emit type: Webhooks).
+transport:
+  method: POST
+  content_type: application/json
+  payload_wrapper: The job payload is POSTed inside a parameter named "job" (or "order" for order-level).
+  retry: Every 15 minutes for up to 12 hours until a 200 status is received.
+  max_size_kb: 60
+  constraints:
+    - Callback URLs cannot contain authentication information.
+    - Payloads larger than 60KB are not sent; use GET /translate/order/{id} or GET job to fetch large content.
+    - File jobs include a `file_url_tgt` parameter linking to the translated file.
+events:
+  - { event: job_available, trigger: A job has been made available to translators. }
+  - { event: job_started, trigger: A job has been started by a translator. }
+  - { event: job_reviewable, trigger: A job is ready for review. }
+  - { event: job_approved_auto, trigger: A job has been approved automatically. }
+  - { event: job_approved_manual, trigger: A job is manually approved via the Gengo Dashboard. }
+  - { event: job_commented, trigger: A job has received a comment by a translator. }

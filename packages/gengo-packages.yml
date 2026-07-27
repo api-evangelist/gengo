@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.gengo.com/client_libraries/
+packages:
+  - language: python
+    registry: pypi
+    name: gengo
+    url: https://pypi.org/project/gengo/
+    install: pip install gengo
+    repository: https://github.com/gengo/gengo-python
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: gengo
+    url: https://rubygems.org/gems/gengo
+    install: gem install gengo
+    repository: https://github.com/gengo/gengo-ruby
+    official: true
+  - language: php
+    registry: packagist
+    name: gengo/gengo
+    url: https://packagist.org/packages/gengo/gengo
+    install: composer require gengo/gengo
+    repository: https://github.com/gengo/gengo-php
+    official: true
+  - language: java
+    registry: github
+    name: gengo-java
+    url: https://github.com/gengo/gengo-java
+    install: Clone or add as dependency from source
+    repository: https://github.com/gengo/gengo-java
+    official: true
+  - language: javascript
+    registry: npm
+    name: gengo
+    url: https://www.npmjs.com/package/gengo
+    install: npm install gengo
+    repository: https://github.com/Localize/node-gengo
+    official: false
+    note: Community library maintained by Localize, linked from Gengo docs.
+  - language: racket
+    registry: github
+    name: mygengo-racket
+    url: https://github.com/shawnps/mygengo-racket
+    official: false
+    note: Community library.
+  - language: clojure
+    registry: github
+    name: gengo-clj
+    url: https://github.com/thoersch/gengo-clj
+    official: false
+    note: Community library.
