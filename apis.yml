@@ -167,7 +167,7 @@ common:
 - type: TermsOfService
   url: https://gengo.com/terms-of-service/
 - type: OpenAPI
-  url: openapi/gengo-openapi.yml
+  url: openapi/_original/gengo-openapi.yml
 - type: Authentication
   url: authentication/gengo-authentication.yml
 - type: Packages
