@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gengo Account API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves account stats, such as orders made.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/account/stats"
+          },
+          "docs": "Retrieves account stats, such as orders made."
+        },
+        {
+          "info": {
+            "name": "Retrieves account information, such as email.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/account/me"
+          },
+          "docs": "Retrieves account information, such as email."
+        },
+        {
+          "info": {
+            "name": "Retrieves account balance in credits.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/account/balance"
+          },
+          "docs": "Retrieves account balance in credits."
+        },
+        {
+          "info": {
+            "name": "Retrieves preferred translators set by user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/account/preferred_translators"
+          },
+          "docs": "Retrieves preferred translators set by user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

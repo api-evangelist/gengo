@@ -1,0 +1,509 @@
+{
+  "item": [
+    {
+      "id": "b812272c-f27c-44c2-b0a4-4bfc0f43f063",
+      "name": "Account",
+      "description": {
+        "content": "Account information, stats, balance and preferred translators.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10cd9cb1-7bdf-4cd8-8a2f-3fca2f6d194e",
+          "name": "Retrieves account stats, such as orders made.",
+          "request": {
+            "name": "Retrieves account stats, such as orders made.",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ef05b9d-b765-4c40-b7f8-36029375a0e0",
+              "name": "Account statistics envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "622ab0b3-4858-46da-9b31-5a8ed2bd3f09",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34a76188-08f6-47b2-8d77-23dbe44a5703",
+          "name": "Retrieves account information, such as email.",
+          "request": {
+            "name": "Retrieves account information, such as email.",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e17f212-2d68-4fc3-949d-78e1ef13fa80",
+              "name": "Account information envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "687da5c5-0311-41aa-aa20-01c2cd743ac1",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d3fdba4-150e-4693-b730-66a90ba091bb",
+          "name": "Retrieves account balance in credits.",
+          "request": {
+            "name": "Retrieves account balance in credits.",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7425512-6eaf-41c2-bdf8-723d69bc8a4c",
+              "name": "Account balance envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5054280e-1289-4dae-92dc-ed3711b2b907",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcdc66f7-95ec-4ecc-a59d-a3c0df41a7e5",
+          "name": "Retrieves preferred translators set by user.",
+          "request": {
+            "name": "Retrieves preferred translators set by user.",
+            "description": {},
+            "url": {
+              "path": [
+                "account",
+                "preferred_translators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00d6ce69-8366-40e7-9043-d943e943221e",
+              "name": "Preferred translators envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "preferred_translators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de002d81-edb8-4e74-a27b-b5e4b3442eb2",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "preferred_translators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gengo.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "180bd9aa-1d3c-4fef-af4b-141f11a95847",
+    "name": "Gengo Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.\n\nContact Support:\n Name: Gengo Support\n Email: support@gengo.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gengo Account Service API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns supported translation language pairs, tiers, and credit prices.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/service/language_pairs",
+            "params": [
+              {
+                "name": "lc_src",
+                "value": "",
+                "type": "query",
+                "description": "Source language code; filters to relevant language pairs."
+              }
+            ]
+          },
+          "docs": "Returns supported translation language pairs, tiers, and credit prices."
+        },
+        {
+          "info": {
+            "name": "Returns a list of supported languages and their language codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/service/languages"
+          },
+          "docs": "Returns a list of supported languages and their language codes."
+        },
+        {
+          "info": {
+            "name": "Returns credit quote and unit count for text based on content, tier, and language pair.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gengo.com/v2/translate/service/quote",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Returns credit quote and unit count for text based on content, tier, and language pair."
+        },
+        {
+          "info": {
+            "name": "Returns credit quote and unit count for uploaded file content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gengo.com/v2/translate/service/quote/file",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "data",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_key",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Returns credit quote and unit count for uploaded file content."
+        },
+        {
+          "info": {
+            "name": "Returns unit type and unit count for text based on content and language code submitted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/service/unit_count"
+          },
+          "docs": "Returns unit type and unit count for text based on content and language code submitted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

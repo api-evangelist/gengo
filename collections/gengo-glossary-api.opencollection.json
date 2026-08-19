@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gengo Account Glossary API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Glossary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a list of glossaries that belongs to the authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/glossary"
+          },
+          "docs": "Retrieves a list of glossaries that belongs to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Retrieves a glossary by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/glossary/:glossary_id",
+            "params": [
+              {
+                "name": "glossary_id",
+                "value": "",
+                "type": "path",
+                "description": "Glossary id."
+              }
+            ]
+          },
+          "docs": "Retrieves a glossary by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

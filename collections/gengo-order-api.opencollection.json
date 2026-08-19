@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gengo Account Order API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a group of jobs that were previously submitted together by their order id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/order/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order id."
+              }
+            ]
+          },
+          "docs": "Retrieves a group of jobs that were previously submitted together by their order id."
+        },
+        {
+          "info": {
+            "name": "Cancels all available jobs in an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gengo.com/v2/translate/order/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order id."
+              }
+            ]
+          },
+          "docs": "Cancels all available jobs in an order."
+        },
+        {
+          "info": {
+            "name": "Retrieves the comment thread for an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/order/:order_id/comments",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order id."
+              }
+            ]
+          },
+          "docs": "Retrieves the comment thread for an order."
+        },
+        {
+          "info": {
+            "name": "Submits a new comment to the order's comment thread.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gengo.com/v2/translate/order/:order_id/comment",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order id."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submits a new comment to the order's comment thread."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

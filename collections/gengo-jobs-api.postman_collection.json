@@ -1,0 +1,661 @@
+{
+  "item": [
+    {
+      "id": "ebccf552-15ae-4e60-8fed-2f0013acdf34",
+      "name": "Jobs",
+      "description": {
+        "content": "Submit and manage groups of translation jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "736f56fa-8f24-40bc-b6a5-673576e9936f",
+          "name": "Submits a job or group of jobs to translate. Request should be no larger than 100MB.",
+          "request": {
+            "name": "Submits a job or group of jobs to translate. Request should be no larger than 100MB.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>",
+                  "description": "JSON-encoded jobs payload (a `jobs` map plus optional `as_group`, `process`)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "97c994ca-48cd-4287-96f5-21ec3d804b62",
+              "name": "Submitted order/jobs envelope (order_id + job ids)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded jobs payload (a `jobs` map plus optional `as_group`, `process`).",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31293a0c-634c-4efd-bdce-173f28073b3b",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded jobs payload (a `jobs` map plus optional `as_group`, `process`).",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a5a6461-7842-46d9-a088-678d9fbd23c4",
+          "name": "Retrieves a list of resources for the most recent jobs filtered by the given parameters.",
+          "request": {
+            "name": "Retrieves a list of resources for the most recent jobs filtered by the given parameters.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by job status."
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp_after",
+                  "value": "<integer>",
+                  "description": "Epoch time; only jobs created after this time."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Maximum number of jobs to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab9cdbce-4d7c-458d-a542-bb4cf1c5b258",
+              "name": "List of recent job resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp_after",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59c0152e-f9d4-44d2-800b-1ef912fb1228",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp_after",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "738fb9b5-b675-41a9-98a3-cb8704182f95",
+          "name": "Updates a group of jobs to translate. Request should be no larger than 100MB.",
+          "request": {
+            "name": "Updates a group of jobs to translate. Request should be no larger than 100MB.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>",
+                  "description": "JSON-encoded action + job_ids."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "58788f4c-fa0a-488b-99c2-25819fabd24f",
+              "name": "Update result envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded action + job_ids.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7269686e-74c9-4bbb-80e6-a07c7b901a6a",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded action + job_ids.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bbc2d10-a707-4021-b700-0929c688fa8c",
+          "name": "Retrieves a list of jobs requested by a comma-separated list of job ids.",
+          "request": {
+            "name": "Retrieves a list of jobs requested by a comma-separated list of job ids.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "jobs",
+                ":ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ids",
+                  "description": "(Required) Comma-separated list of job ids."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa51dbe4-8b49-47de-9c43-2bad61c05a47",
+              "name": "Jobs envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs",
+                    ":ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ids",
+                      "description": "(Required) Comma-separated list of job ids."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d22e991d-80ef-4f04-ba6c-9dfd72787d54",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "jobs",
+                    ":ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ids",
+                      "description": "(Required) Comma-separated list of job ids."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gengo.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6307509a-df4b-4769-8028-a00020cbce51",
+    "name": "Gengo Account Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.\n\nContact Support:\n Name: Gengo Support\n Email: support@gengo.com",
+      "type": "text/plain"
+    }
+  }
+}

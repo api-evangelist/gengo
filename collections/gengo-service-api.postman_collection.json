@@ -1,0 +1,762 @@
+{
+  "item": [
+    {
+      "id": "3062fea9-7e7f-4aed-8dd9-fe10de2407ec",
+      "name": "Service",
+      "description": {
+        "content": "Language pairs, supported languages, quotes and unit counts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11ff07c0-2aa9-44b6-b60e-e158c80f3125",
+          "name": "Returns supported translation language pairs, tiers, and credit prices.",
+          "request": {
+            "name": "Returns supported translation language pairs, tiers, and credit prices.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "service",
+                "language_pairs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lc_src",
+                  "value": "<string>",
+                  "description": "Source language code; filters to relevant language pairs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70e26d16-bc66-4865-8119-6cf29c1de067",
+              "name": "Language pairs envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "language_pairs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lc_src",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d761ecfd-e571-4ff8-95b5-315c895dc01a",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "language_pairs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lc_src",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80f2f43b-58b4-4618-97d0-757d523da323",
+          "name": "Returns a list of supported languages and their language codes.",
+          "request": {
+            "name": "Returns a list of supported languages and their language codes.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "service",
+                "languages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6e1aaec-8431-4187-af43-07c6b3f6fc99",
+              "name": "Languages envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "languages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d46c0cf-42d4-448b-8746-d0ae32b873bd",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "languages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6669d4a2-26a1-4f7e-89c3-1f0ae34a694a",
+          "name": "Returns credit quote and unit count for text based on content, tier, and language pair.",
+          "request": {
+            "name": "Returns credit quote and unit count for text based on content, tier, and language pair.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "service",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "data",
+                  "value": "<string>",
+                  "description": "JSON-encoded jobs map to quote."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a085a60-92aa-4446-9dc2-c215def1cd56",
+              "name": "Quote envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded jobs map to quote.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f67ff024-4e4c-4312-b058-6247b02df042",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON-encoded jobs map to quote.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "662f1df4-61c4-4839-801e-c15b1eeeac02",
+          "name": "Returns credit quote and unit count for uploaded file content.",
+          "request": {
+            "name": "Returns credit quote and unit count for uploaded file content.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "service",
+                "quote",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "JSON-encoded jobs map referencing uploaded files."
+                },
+                {
+                  "key": "file_key",
+                  "type": "file",
+                  "description": "Uploaded file(s) keyed to the jobs payload."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "70141e17-4518-462f-8965-049d620d3180",
+              "name": "File quote envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "quote",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "JSON-encoded jobs map referencing uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Uploaded file(s) keyed to the jobs payload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_key",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4018bed-28d0-4ba0-92cd-facb83c9f82c",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "quote",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "JSON-encoded jobs map referencing uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Uploaded file(s) keyed to the jobs payload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file_key",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce13bc3b-6ece-4e60-92da-cb13543c7663",
+          "name": "Returns unit type and unit count for text based on content and language code submitted.",
+          "request": {
+            "name": "Returns unit type and unit count for text based on content and language code submitted.",
+            "description": {},
+            "url": {
+              "path": [
+                "translate",
+                "service",
+                "unit_count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afe40160-f94b-480f-9330-611cef96909f",
+              "name": "Unit count envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "unit_count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0766d663-caa0-40f5-ba35-a728df06cfbc",
+              "name": "Error envelope (opstat=error) carrying a numeric Gengo error code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "translate",
+                    "service",
+                    "unit_count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opstat\": \"error\",\n  \"err\": {\n    \"code\": 1100,\n    \"msg\": \"api_sig is a required field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gengo.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "655176f0-9617-491e-870c-35c4e131c5e6",
+    "name": "Gengo Account Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.\n\nContact Support:\n Name: Gengo Support\n Email: support@gengo.com",
+      "type": "text/plain"
+    }
+  }
+}

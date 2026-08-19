@@ -1,0 +1,202 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gengo Account Job API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a specific job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/job/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific job."
+        },
+        {
+          "info": {
+            "name": "Updates a job (approve, reject, revise, or purchase a reviewable job).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gengo.com/v2/translate/job/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates a job (approve, reject, revise, or purchase a reviewable job)."
+        },
+        {
+          "info": {
+            "name": "Cancels the job. You can only cancel a job if it has not been started by a translator.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gengo.com/v2/translate/job/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ]
+          },
+          "docs": "Cancels the job. You can only cancel a job if it has not been started by a translator."
+        },
+        {
+          "info": {
+            "name": "Gets list of revision resources for a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/job/:id/revisions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ]
+          },
+          "docs": "Gets list of revision resources for a job."
+        },
+        {
+          "info": {
+            "name": "Gets a specific revision for a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/job/:id/revision/:rev_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              },
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "Revision id."
+              }
+            ]
+          },
+          "docs": "Gets a specific revision for a job."
+        },
+        {
+          "info": {
+            "name": "Retrieves the feedback you have submitted for a particular job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/job/:id/feedback",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ]
+          },
+          "docs": "Retrieves the feedback you have submitted for a particular job."
+        },
+        {
+          "info": {
+            "name": "Retrieves the comment thread for a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/job/:id/comments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ]
+          },
+          "docs": "Retrieves the comment thread for a job."
+        },
+        {
+          "info": {
+            "name": "Submits a new comment to the job's comment thread.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gengo.com/v2/translate/job/:id/comment",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Job id."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submits a new comment to the job's comment thread."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

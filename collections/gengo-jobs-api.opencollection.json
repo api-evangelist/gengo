@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gengo Account Jobs API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a list of resources for the most recent jobs filtered by the given parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/jobs",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job status."
+              },
+              {
+                "name": "timestamp_after",
+                "value": "",
+                "type": "query",
+                "description": "Epoch time; only jobs created after this time."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of resources for the most recent jobs filtered by the given parameters."
+        },
+        {
+          "info": {
+            "name": "Submits a job or group of jobs to translate. Request should be no larger than 100MB.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gengo.com/v2/translate/jobs",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submits a job or group of jobs to translate. Request should be no larger than 100MB."
+        },
+        {
+          "info": {
+            "name": "Updates a group of jobs to translate. Request should be no larger than 100MB.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gengo.com/v2/translate/jobs",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "data",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates a group of jobs to translate. Request should be no larger than 100MB."
+        },
+        {
+          "info": {
+            "name": "Retrieves a list of jobs requested by a comma-separated list of job ids.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gengo.com/v2/translate/jobs/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of job ids."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of jobs requested by a comma-separated list of job ids."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
