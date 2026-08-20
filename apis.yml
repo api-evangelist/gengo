@@ -98,6 +98,8 @@ apis:
   humanURL: https://developers.gengo.com/
   baseURL: https://api.gengo.com/v2
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
