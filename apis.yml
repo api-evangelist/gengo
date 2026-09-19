@@ -146,6 +146,8 @@ apis:
   humanURL: https://developers.gengo.com/
   baseURL: https://api.gengo.com/v2
   tags:
+  - Services
+  tags_raw:
   - Service
   properties:
   - type: OpenAPI
