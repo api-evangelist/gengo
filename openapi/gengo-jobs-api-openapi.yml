@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Gengo Account Jobs API
+  title: Gengo Jobs API
   version: '2.0'
-  description: The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.
+  description: The Gengo API (v2) lets you programmatically order human translation.
   contact:
     name: Gengo Support
     url: https://developers.gengo.com
@@ -29,7 +29,7 @@ paths:
       tags:
       - Jobs
       operationId: postJobs
-      summary: Submits a job or group of jobs to translate. Request should be no larger than 100MB.
+      summary: Submits a job or group of jobs to translate.
       requestBody:
         required: true
         content:
@@ -53,7 +53,7 @@ paths:
       tags:
       - Jobs
       operationId: getJobs
-      summary: Retrieves a list of resources for the most recent jobs filtered by the given parameters.
+      summary: Retrieves a list of resources for the most recent jobs filtered by the given…
       parameters:
       - name: status
         in: query
@@ -86,7 +86,7 @@ paths:
       tags:
       - Jobs
       operationId: updateJobs
-      summary: Updates a group of jobs to translate. Request should be no larger than 100MB.
+      summary: Updates a group of jobs to translate. Request should be no larger than 100MB
       requestBody:
         required: true
         content:
@@ -111,7 +111,7 @@ paths:
       tags:
       - Jobs
       operationId: getJobsByIds
-      summary: Retrieves a list of jobs requested by a comma-separated list of job ids.
+      summary: Retrieves a list of jobs requested by a comma-separated list of job ids
       parameters:
       - name: ids
         in: path
@@ -129,13 +129,6 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
-  responses:
-    Error:
-      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -180,6 +173,13 @@ components:
       - canceled
       - hold
       description: The lifecycle status of a translation job.
+  responses:
+    Error:
+      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKey:
       type: apiKey

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Gengo Account Glossary API
+  title: Gengo Glossary API
   version: '2.0'
-  description: The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.
+  description: The Gengo API (v2) lets you programmatically order human translation.
   contact:
     name: Gengo Support
     url: https://developers.gengo.com
@@ -29,7 +29,7 @@ paths:
       tags:
       - Glossary
       operationId: getGlossaries
-      summary: Retrieves a list of glossaries that belongs to the authenticated user.
+      summary: Retrieves a list of glossaries that belongs to the authenticated user
       responses:
         '200':
           description: Glossaries envelope
@@ -44,7 +44,7 @@ paths:
       tags:
       - Glossary
       operationId: getGlossary
-      summary: Retrieves a glossary by ID.
+      summary: Retrieves a glossary by ID
       parameters:
       - name: glossary_id
         in: path
@@ -70,6 +70,18 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
     Error:
       type: object
       properties:
@@ -88,18 +100,6 @@ components:
       required:
       - opstat
       - err
-    Envelope:
-      type: object
-      properties:
-        opstat:
-          type: string
-          enum:
-          - ok
-          - error
-        response:
-          type: object
-      required:
-      - opstat
   securitySchemes:
     ApiKey:
       type: apiKey

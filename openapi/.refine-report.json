@@ -1,12 +1,7 @@
 {
   "provider": "gengo",
   "sources": [
-    "gengo-account-api-openapi.yml",
-    "gengo-glossary-api-openapi.yml",
-    "gengo-job-api-openapi.yml",
-    "gengo-jobs-api-openapi.yml",
-    "gengo-order-api-openapi.yml",
-    "gengo-service-api-openapi.yml"
+    "_original/gengo-openapi.yml"
   ],
   "outputs": [
     "gengo-account-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "gengo-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "gengo-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gengo-glossary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gengo-job-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gengo-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gengo-order-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gengo-service-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

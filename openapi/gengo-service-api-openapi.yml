@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Gengo Account Service API
+  title: Gengo Service API
   version: '2.0'
-  description: The Gengo API (v2) lets you programmatically order human translation. Submit text or file jobs, group them into orders, retrieve translated content, manage comments and revisions, run quotes, look up supported language pairs, and manage glossaries. Jobs move through a defined status lifecycle (queued -> available -> pending -> reviewable -> approved) and can notify your system via callback URLs. Authentication uses a public api_key plus an HMAC-SHA1 signature (api_sig) computed over a Unix timestamp (ts) with your private key.
+  description: The Gengo API (v2) lets you programmatically order human translation.
   contact:
     name: Gengo Support
     url: https://developers.gengo.com
@@ -29,7 +29,7 @@ paths:
       tags:
       - Service
       operationId: getServiceLanguagePairs
-      summary: Returns supported translation language pairs, tiers, and credit prices.
+      summary: Returns supported translation language pairs, tiers, and credit prices
       security: []
       parameters:
       - name: lc_src
@@ -52,7 +52,7 @@ paths:
       tags:
       - Service
       operationId: getServiceLanguages
-      summary: Returns a list of supported languages and their language codes.
+      summary: Returns a list of supported languages and their language codes
       security: []
       responses:
         '200':
@@ -68,7 +68,7 @@ paths:
       tags:
       - Service
       operationId: postServiceQuote
-      summary: Returns credit quote and unit count for text based on content, tier, and language pair.
+      summary: Returns credit quote and unit count for text based on content, tier, and…
       requestBody:
         required: true
         content:
@@ -93,7 +93,7 @@ paths:
       tags:
       - Service
       operationId: postServiceQuoteFile
-      summary: Returns credit quote and unit count for uploaded file content.
+      summary: Returns credit quote and unit count for uploaded file content
       requestBody:
         required: true
         content:
@@ -122,7 +122,7 @@ paths:
       tags:
       - Service
       operationId: getServiceUnitCount
-      summary: Returns unit type and unit count for text based on content and language code submitted.
+      summary: Returns unit type and unit count for text based on content and language code…
       security: []
       responses:
         '200':
@@ -142,6 +142,18 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
     Error:
       type: object
       properties:
@@ -160,18 +172,6 @@ components:
       required:
       - opstat
       - err
-    Envelope:
-      type: object
-      properties:
-        opstat:
-          type: string
-          enum:
-          - ok
-          - error
-        response:
-          type: object
-      required:
-      - opstat
   securitySchemes:
     ApiKey:
       type: apiKey
