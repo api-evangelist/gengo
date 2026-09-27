@@ -122,26 +122,7 @@ paths:
         default:
           $ref: '#/components/responses/Error'
 components:
-  responses:
-    Error:
-      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Envelope:
-      type: object
-      properties:
-        opstat:
-          type: string
-          enum:
-          - ok
-          - error
-        response:
-          type: object
-      required:
-      - opstat
     Error:
       type: object
       properties:
@@ -160,6 +141,25 @@ components:
       required:
       - opstat
       - err
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
+  responses:
+    Error:
+      description: Error envelope (opstat=error) carrying a numeric Gengo error code.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKey:
       type: apiKey

@@ -148,18 +148,6 @@ components:
       required:
       - opstat
       - err
-    Envelope:
-      type: object
-      properties:
-        opstat:
-          type: string
-          enum:
-          - ok
-          - error
-        response:
-          type: object
-      required:
-      - opstat
     JobStatus:
       type: string
       enum:
@@ -173,6 +161,18 @@ components:
       - canceled
       - hold
       description: The lifecycle status of a translation job.
+    Envelope:
+      type: object
+      properties:
+        opstat:
+          type: string
+          enum:
+          - ok
+          - error
+        response:
+          type: object
+      required:
+      - opstat
   responses:
     Error:
       description: Error envelope (opstat=error) carrying a numeric Gengo error code.
