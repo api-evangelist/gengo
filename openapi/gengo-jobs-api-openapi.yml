@@ -130,24 +130,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        opstat:
-          type: string
-          example: error
-        err:
-          type: object
-          properties:
-            code:
-              type: integer
-              example: 1100
-            msg:
-              type: string
-              example: api_sig is a required field
-      required:
-      - opstat
-      - err
     JobStatus:
       type: string
       enum:
@@ -173,6 +155,24 @@ components:
           type: object
       required:
       - opstat
+    Error:
+      type: object
+      properties:
+        opstat:
+          type: string
+          example: error
+        err:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 1100
+            msg:
+              type: string
+              example: api_sig is a required field
+      required:
+      - opstat
+      - err
   responses:
     Error:
       description: Error envelope (opstat=error) carrying a numeric Gengo error code.
