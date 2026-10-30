@@ -64,6 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Gengo is a company surfaced as a portfolio company of 500-global, point-nine and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Gengo is a people-powered translation platform that delivers fast, affordable, high-quality human translation in every major language through a global network of thousands of certified translators. The Gengo API (v2) lets developers order translation programmatically: submit text or file jobs, group them into orders, run cost quotes, look up supported language pairs and tiers, manage glossaries, retrieve completed translations and revisions, exchange comments with translators, and receive job-status updates through per-job callback URLs. Authentication uses a public API key plus an HMAC-SHA1 request signature, with a full sandbox for testing. Gengo was surfaced as a portfolio company of 500 Global and Point Nine and enriched into the API Evangelist network.
 
-Backed by: 500-global, point-nine — https://gengo.com
+**Areas:** Company · Translation · Localization · Human Translation · Language Services · Internationalization · Content · Text
+
+## Gengo on APIs.io
+
+Everything profiled for Gengo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gengo/](https://apis.io/providers/gengo/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Gengo Account API](https://apis.io/apis/gengo/gengo-account-api/) — Account information, stats, balance and preferred translators.
+- [Gengo Glossary API](https://apis.io/apis/gengo/gengo-glossary-api/) — Manage translation glossaries.
+- [Gengo Job API](https://apis.io/apis/gengo/gengo-job-api/) — Operations on a single translation job.
+- [Gengo Jobs API](https://apis.io/apis/gengo/gengo-jobs-api/) — Submit and manage groups of translation jobs.
+- [Gengo Order API](https://apis.io/apis/gengo/gengo-order-api/) — Operations on an order (a group of jobs submitted together).
+- [Gengo Service API](https://apis.io/apis/gengo/gengo-service-api/) — Language pairs, supported languages, quotes and unit counts.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Gengo Callbacks Webhooks](https://apis.io/asyncapis/gengo/gengo-callbacks-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [gengo](https://apis.io/servers/gengo/gengo/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Gengo Account API](https://apis.io/collections/gengo/open-gengo-account-api/)
+- [Gengo Account Glossary API](https://apis.io/collections/gengo/open-gengo-glossary-api/)
+- [Gengo Account Job API](https://apis.io/collections/gengo/open-gengo-job-api/)
+- [Gengo Account Jobs API](https://apis.io/collections/gengo/open-gengo-jobs-api/)
+- [Gengo Account Order API](https://apis.io/collections/gengo/open-gengo-order-api/)
+- [Gengo Account Service API](https://apis.io/collections/gengo/open-gengo-service-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Gengo Overlay](https://apis.io/overlays/gengo/gengo-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Gengo Authentication](https://apis.io/security/gengo/gengo-authentication/)
+- [Gengo Domain Security](https://apis.io/security/gengo/gengo-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://gengo.com)
+- [Documentation](https://developers.gengo.com/)
+- [Getting started](https://developers.gengo.com/v2/first_steps/)
+- [API reference](https://developers.gengo.com/v2/api_methods/)
+- [Pricing](https://gengo.com/pricing-languages/)
+- [Sign up](https://gengo.com/auth/form/signup/)
+- [Support](https://support.gengo.com/hc/en-us)
+- [Blog](https://gengo.com/blog/)
+- [Terms of service](https://gengo.com/terms-of-service/)
+- [GitHub](https://github.com/gengo)
+
+## API Evangelist rating
+
+**Kin Score 43.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 34.2 |
+
+**Agent readiness 26.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gengo/](https://apis.io/providers/gengo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Gengo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gengo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
